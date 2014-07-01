@@ -12,7 +12,7 @@ The following web service methods are currently supported:
   - Contact
     - listContacts
 
-## Usage
+## .NET Usage
 
 ```
 CloudSM csm = new CloudSM();
@@ -36,6 +36,27 @@ Console.ReadKey();
 Instantiate the CloudSM class, set the basic information and then call the
 instance methods to log and update service requests, add worklogs to service
 requests, and search for contacts.
+
+## COM Usage
+
+Install with RegAsm.exe (ships with the .NET Framework):
+
+`C:\Windows\Microsoft.NET\Framework\v4.0\RegAsm.exe /codebase /tlb CloudSMLib.dll`
+
+You can then make a reference to the DLL in your VB6 project or use it from
+VBScript as in the following example:
+
+```
+Set csm = CreateObject("CloudSMLib.CloudSM")
+
+csm.HostName = "sm1s.saas.ca.com"
+csm.UserName = "user@test.ca.com"
+csm.Password = "password"
+
+Set results = csm.listContacts("userID")
+
+Wscript.Echo results.responseText
+```
 
 ## Notes
 
